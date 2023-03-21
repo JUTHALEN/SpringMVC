@@ -32,7 +32,7 @@ public class Telefono implements Serializable {
     private String telefono;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "idEstudiante")
+    @JoinColumn(name = "idEstudiante") //Si no nombramos la columna, se añade con un nombre automático
     private Estudiante estudiante;
     
 
