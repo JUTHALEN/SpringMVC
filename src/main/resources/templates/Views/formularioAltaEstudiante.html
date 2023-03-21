@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta Estudiante</title>
+</head>
+<body>
+    <h1>Formulario de Alta de Estudiante</h1>
+
+    <form th:object="${estudiante}" action="">
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" th:field="*{nombre}" placeholder="Nombre">
+
+        <!--HAcer que se baje para abajo cada label-->
+        <br/>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" name="apellido" id="apellido" th:field="*{apellido}" placeholder="Apellido">
+        
+        <br/>
+
+        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+        <input type="date" name="fechaNacimiento" id="fechaNacimiento" th:field="*{fechaNacimiento}">
+
+        <br/>
+
+        <input type="submit" value="Enviar">
+
+
+    </form>
+
+    <!--¿Cómo funciona un formulario HTML en general?-->
+    <!-- <form action="/altaEstudiante" method="post">
+        <input name ="Nombre" placeholder="Nombre" type="text">
+        
+        <label for="2">Fecha de Nacimiento</label>
+        <input type="date" name="fechaNacimiento" id="2">
+        <input type="submit" value="Enviar">
+    </form> -->
+
+
+</body>
+</html>
