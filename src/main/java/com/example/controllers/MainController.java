@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -51,6 +52,13 @@ public class MainController {
         model.addAttribute("estudiante", new Estudiante());
 
         return "Views/formularioAltaEstudiante";
+     }
+     
+     //Vamos a crear un método POST que recibe los datos procedentes de los controllers del formulario
+     
+     @PostMapping("/altaEstudiante")
+     public void altaEstudiante(){
+        
      }
      
 }
