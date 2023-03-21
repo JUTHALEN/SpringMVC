@@ -63,9 +63,8 @@ public class MainController {
      }
      
      //Vamos a crear un método POST que recibe los datos procedentes de los controllers del formulario
-     
      @PostMapping("/altaEstudiante")
-     public void altaEstudiante(){
+        public void altaEstudiante(){
         
      }
      
