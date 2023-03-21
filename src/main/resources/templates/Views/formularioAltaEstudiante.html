@@ -75,14 +75,11 @@
             <label for="facultad">Facultad: </label>
             <div class="col-sm-10">
             <select name="facultad" id="facultad" required>
-                <option value=""></option>
-                <option value="1">Informática</option>
-                <option value="2">Biología</option>
-                <option value="3">Economía</option>
+                <option></option>
+                <option th:each="facultad : ${facultades}" th:value="${facultad.id}" th:text="${facultad.nombre}"></option>
             </select>
             </div>
-        </div>
-        
+        </div>        
 
         <input type="submit" value="Enviar"> 
 
