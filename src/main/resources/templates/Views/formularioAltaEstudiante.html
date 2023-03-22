@@ -10,7 +10,7 @@
 <body>
     <h1>Formulario de Alta de Estudiante</h1>
 
-    <form th:object="${estudiante}">
+    <form th:object="${estudiante}" th:action="@{/altaEstudiante}" method="post"> <!--@ es para especificar direcciones(url)-->
 
         <div  class="row mb-3">            
             <label for="nombre">Nombre:</label>
@@ -79,11 +79,26 @@
                 <option th:each="facultad : ${facultades}" th:value="${facultad.id}" th:text="${facultad.nombre}"></option>
             </select>
             </div>
-        </div>        
+        </div>    
+        
+        
 
-        <input type="submit" value="Enviar"> 
+        
+        <!-- <button type="button" onclick="volver()">Cancelar</button> -->
+
+        <input type="submit" value="Alta"> 
 
     </form>
+
+    <!-- <script>
+        function volver() {
+          history.back();
+        }
+    </script>    -->
+        
+        
+        
+        
 
     <!--¿Cómo funciona un formulario HTML en general?-->
     <!-- <form action="/altaEstudiante" method="post">

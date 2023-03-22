@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
     <title>Estudiantes</title>
 </head>
 <style>
+    a{align-items: center;}
     table{text-align: center;}
     th{color: black;}
     thead{background-color: cornflowerblue;}
@@ -14,6 +17,7 @@
 </style>
 <body>
     <h1>Listado de Estudiantes</h1>
+    <br>
     <!--p th:text="${saludo}"></p-->
     <table TABLE ALIGN="center">
         <thead>
@@ -43,7 +47,11 @@
             </tr>
         </tbody>
     </table>
-
+    <br>
+    
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a type="button" class="btn btn-outline-secondary" disabled th:href="@{formEstudiante}">Alta nuevo estudiante</a>
+    </div>
 
 </body>
 </html>
