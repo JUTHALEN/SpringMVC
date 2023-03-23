@@ -31,7 +31,7 @@ public class Telefono implements Serializable {
     private int id;
     private String telefono;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "idEstudiante") //Si no nombramos la columna, se añade con un nombre automático
     private Estudiante estudiante;
     

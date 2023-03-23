@@ -45,7 +45,11 @@
                 <td th:text="${estudiante.beca}"></td>
                 <td th:text="${estudiante.genero}"></td>
                 <td th:text="${estudiante.Facultad.nombre}"></td>
-                <td><button>Actualizar</button><button>Detalle</button><button>Borrar</button></td>
+                <td>
+                    <a th:href="@{/formActualizar/}+${estudiante.id}" type="button" class="btn btn-outline-secondary">Actualizar</a>
+                    <a th:href="@{/detalle/}+${estudiante.id}" type="button" class="btn btn-outline-secondary">Detalle</a>
+                    <a th:href="@{/borrar/}+${estudiante.id}" type="button" class="btn btn-outline-secondary">Borrar</a>
+                </td>
             </tr>
         </tbody>
     </table>

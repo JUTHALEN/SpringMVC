@@ -31,6 +31,6 @@ public class Facultad implements Serializable{
     private int id;
     private String nombre;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "facultad") //mappedBy es para crear la bidireccion de tablas. le decimos quien posee la relacion
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "facultad") //mappedBy es para crear la bidireccion de tablas. le decimos quien posee la relacion
     private List<Estudiante> estudiantes;
 }

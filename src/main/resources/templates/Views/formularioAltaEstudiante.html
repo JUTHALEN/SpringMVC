@@ -8,9 +8,12 @@
     <title>Alta Estudiante</title>
 </head>
 <body>
-    <h1>Formulario de Alta de Estudiante</h1>
+    <h1>Formulario de Alta/Modificación de Estudiante</h1>
 
-    <form th:object="${estudiante}" th:action="@{/altaEstudiante}" method="post"> <!--@ es para especificar direcciones(url)-->
+    <form th:object="${estudiante}" th:action="@{/altaModificacionEstudiante}" method="post"> <!--@ es para especificar direcciones(url)-->
+
+        <!-- guardar en un input oculto el id del estudiante -->
+        <input type="hidden" name="id" th:value="${estudiante.id}">
 
         <div  class="row mb-3">            
             <label for="nombre">Nombre:</label>
@@ -36,14 +39,16 @@
         <div  class="row mb-3">              
             <label for="fechaNacimiento">Fecha de Nacimiento:</label>
             <div class="col-sm-10">
-                <input type="date" name="fechaNacimiento" id="fechaNacimiento" th:field="*{fechaNacimiento}" required>
+                <input type="date" name="fechaNacimiento" id="fechaNacimiento" th:field="*{fechaNacimiento}" 
+                th:value="${estudiante.fechaNacimiento}" required>
             </div>
         </div>
 
         <div  class="row mb-3">
             <label for="fechaAlta">Fecha de Alta:</label>
             <div class="col-sm-10">
-            <input type="date" name="fechaAlta" id="fechaAlta" th:field="*{fechaAlta}" required>        
+            <input type="date" name="fechaAlta" id="fechaAlta" th:field="*{fechaAlta}" 
+            th:value="${estudiante.fechaAlta}" required>        
         </div>
         </div>
         
@@ -76,7 +81,8 @@
             <div class="col-sm-10">
             <select name="facultad" id="facultad" required>
                 <option></option>
-                <option th:each="facultad : ${facultades}" th:value="${facultad.id}" th:text="${facultad.nombre}"></option>
+                <option th:each="facultad : ${facultades}" th:value="${facultad.id}" th:text="${facultad.nombre}" 
+                th:selected="${estudiante.facultad != null and facultad.id == estudiante.facultad.id}"></option>
             </select>
             </div>
         </div>    
@@ -84,13 +90,14 @@
         <div  class="row mb-3">
             <label for="numTelefono">Teléfono(s)</label>
             <div class="col-sm-10">
-                <input type="text" name="numTelefono" id="numTelefono" placeholder="Uno o varios separados por ;">
+                <input type="text" name="numTelefono" id="numTelefono" placeholder="Uno o varios separados por ;"
+                th:value="${telefonos}">
             </div>
         </div>
         
         <!-- <button type="button" onclick="volver()">Cancelar</button> -->
 
-        <input type="submit" value="Alta"> 
+        <input type="submit" value="Alta/Modificar"> 
 
     </form>
 

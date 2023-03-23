@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -38,27 +40,32 @@ public class Estudiante implements Serializable{
     private int id;
 
     @NotNull(message = "El nombre no puede dejarse en blanco")
-    @Size(max = 25, min = 4)
+    //@Size(max = 25, min = 4)
     private String nombre;
     private String primerApellido;
     private String segundoApellido;
-    private LocalDate fechaAlta;
-    private LocalDate fechaNacimiento;
     private Genero genero;
     private double beca;
     //private int idFacultad; -> NO hace falta porq le hemos dicho que la pk de facultad es una columna que se llama idFacultad
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fechaAlta;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST) //De uno a muchos Una facultad tiene muchos estudiantes
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fechaNacimiento;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) //De uno a muchos Una facultad tiene muchos estudiantes
     @JoinColumn(name = "idFacultad") //Por esto hemos podido eliminar lo de private NO ES NECESARIO PONERLO
     private Facultad facultad;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "estudiante") 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "estudiante") 
     private List<Telefono> telefonos;
 
     public enum Genero{
         HOMBRE, MUJER, OTRO
     }
 
+   
 
     
 }
