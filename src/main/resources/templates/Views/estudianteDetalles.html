@@ -8,6 +8,12 @@
     <title>Detalles Estudiantes</title>
 </head>
 <body>
-        
+    <h1 th:if="${estudiante != null}" th:text="'Detalles del estudiante ' + ${estudiante.nombre} + ' ' + ${estudiante.primerApellido}"></h1>
+    <div th:if="${telefonos != null}">
+        <p>Telefonos:</p>
+        <ul>
+            <li th:each="telefono : ${telefonos}" th:text="${telefono}"></li>
+        </ul>
+    </div>
 </body>
 </html>

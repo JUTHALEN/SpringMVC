@@ -148,4 +148,38 @@ public class MainController {
         return "redirect:/listar";
     }
 
+    /*@GetMapping("/detalle/{id}")
+    public String detallesEstudiante(@PathVariable(name = "id") int idEstudiante, Model model) {
+
+        Estudiante estudiante = estudianteService.findById(idEstudiante);
+
+        List<Telefono> todosTelefonos = telefonoService.findAll();
+
+        List<Telefono> telefonosDelEstudiante = todosTelefonos.stream()
+            .filter(t -> t.getEstudiante().getId() == idEstudiante)
+            .collect(Collectors.toList());
+
+        model.addAttribute("estudiante", estudiante);
+        model.addAttribute("telefonos", telefonosDelEstudiante);
+
+        return "Views/estudianteDetalles";
+    }*/
+
+    //Forma de hacerlo de Victor:
+    @GetMapping("/detalle/{id}")
+    public String estudianteDetails(@PathVariable(name = "id") int id, Model model){
+
+        Estudiante estudiante = estudianteService.findById(id);
+        List<Telefono> telefonos = telefonoService.findByEstudiante(estudiante); 
+
+        List<String> numTelefonos = telefonos.stream()
+            .map(t -> t.getTelefono())
+            .toList();
+        
+        model.addAttribute("estudiante", estudiante);
+        model.addAttribute("telefonos", numTelefonos);
+
+        return "Views/estudianteDetalles";
+    }
+
 }

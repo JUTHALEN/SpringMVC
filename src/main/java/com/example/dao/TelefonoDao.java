@@ -1,5 +1,7 @@
 package com.example.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.entities.Estudiante;
@@ -13,5 +15,5 @@ public interface TelefonoDao extends JpaRepository<Telefono, Integer> {
 
     long deleteByEstudiante(Estudiante estudiante);
 
-   // List<Telefono> findByEstudiante(Estudiante estudiante);
+   List<Telefono> findByEstudiante(Estudiante estudiante); //Forma del profesor de mostrar el detalle del estudiante
 }

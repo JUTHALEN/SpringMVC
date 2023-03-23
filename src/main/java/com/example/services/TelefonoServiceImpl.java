@@ -43,5 +43,11 @@ public class TelefonoServiceImpl implements TelefonoService {
     public void deleteByEstudiante(Estudiante estudiante) {
         telefonoDao.deleteByEstudiante(estudiante);
     }
+
+    @Override
+    @Transactional //No es necesario ponerlo en las select, pero no pasa nada si se pone
+    public List<Telefono> findByEstudiante(Estudiante estudiante) {
+        return telefonoDao.findByEstudiante(estudiante);
+    }
     
 }
