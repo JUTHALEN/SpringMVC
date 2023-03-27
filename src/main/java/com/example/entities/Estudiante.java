@@ -1,5 +1,6 @@
 package com.example.entities;
 
+import java.io.File;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -17,7 +18,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -46,6 +46,8 @@ public class Estudiante implements Serializable{
     private String segundoApellido;
     private Genero genero;
     private double beca;
+
+    private String foto;
     //private int idFacultad; -> NO hace falta porq le hemos dicho que la pk de facultad es una columna que se llama idFacultad
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")

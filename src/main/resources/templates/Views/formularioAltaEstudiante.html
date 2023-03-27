@@ -10,7 +10,7 @@
 <body>
     <h1>Formulario de Alta/Modificación de Estudiante</h1>
 
-    <form th:object="${estudiante}" th:action="@{/altaModificacionEstudiante}" method="post"> <!--@ es para especificar direcciones(url)-->
+    <form th:object="${estudiante}" th:action="@{/altaModificacionEstudiante}" method="post" enctype="multipart/form-data"> <!--@ es para especificar direcciones(url)-->
 
         <!-- guardar en un input oculto el id del estudiante -->
         <input type="hidden" name="id" th:value="${estudiante.id}">
@@ -88,13 +88,20 @@
         </div>    
         
         <div  class="row mb-3">
+            <label for="imagen">Foto:</label>
+            <div class="col-sm-10">
+                <input type="file" name="imagen" id="imagen">
+            </div>
+        </div>
+        
+        <div  class="row mb-3">
             <label for="numTelefono">Teléfono(s)</label>
             <div class="col-sm-10">
                 <input type="text" name="numTelefono" id="numTelefono" placeholder="Uno o varios separados por ;"
                 th:value="${telefonos}">
             </div>
         </div>
-        
+
         <!-- <button type="button" onclick="volver()">Cancelar</button> -->
 
         <input type="submit" value="Alta/Modificar"> 

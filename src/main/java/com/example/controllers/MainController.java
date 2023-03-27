@@ -1,5 +1,8 @@
 package com.example.controllers;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
@@ -14,8 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.entities.Estudiante;
 import com.example.entities.Facultad;
@@ -51,7 +54,9 @@ public class MainController {
         List<Estudiante> estudiantes = estudianteService.findAll();
 
         ModelAndView mav = new ModelAndView("Views/listarEstudiantes");
-        mav.addObject("estudiantes", estudiantes);        
+
+        mav.addObject("estudiantes", estudiantes); 
+               
         //mav.addObject("saludo", "Hola y hasta mañana!");        
         return mav;
     }
@@ -79,9 +84,39 @@ public class MainController {
      
      //Vamos a crear un método POST que recibe los datos procedentes de los controllers del formulario
     @PostMapping("/altaModificacionEstudiante")
-    public String altaEstudiante(@ModelAttribute Estudiante estudiante, @RequestParam(name= "numTelefono") String telefonosRecibidos){
+    public String altaEstudiante(@ModelAttribute Estudiante estudiante,
+                                 @RequestParam(name = "numTelefono") String telefonosRecibidos,
+                                 @RequestParam(name = "imagen") MultipartFile imagen){
         
         LOG.info("Telefonos recibidos: " + telefonosRecibidos);
+
+        //Antes de que se guarde el estudiante hay que guardar la imagen, para ello debemos preguntar:
+        if (!imagen.isEmpty()) {
+            try {
+            
+            //Ruta relativa de donde voy a almacenar el archivo de imagen            
+            Path rutaRelativa = Paths.get("src/main/resources/static/images");     
+                        
+            //Necesitamos la ruta absoluta            
+            String rutaAbsoluta = rutaRelativa.toFile().getAbsolutePath();       
+            
+            //Hemos recibido un array de Bytes            
+            byte[] imagenEnBytes = imagen.getBytes();
+
+            //Ruta completa            
+            Path rutaCompleta = Paths.get(rutaAbsoluta + "/" + imagen.getOriginalFilename());       
+            
+            //Guardamos la imagen el el File System            
+            Files.write(rutaCompleta, imagenEnBytes);      
+            
+            //Asociar la imagen con el objeto estudiante que se va a guardar
+            estudiante.setFoto(imagen.getOriginalFilename());
+            
+            } catch (Exception e) {
+                e.getMessage();
+            }
+            
+        }
 
         estudianteService.save(estudiante);
 
@@ -167,9 +202,9 @@ public class MainController {
 
     //Forma de hacerlo de Victor:
     @GetMapping("/detalle/{id}")
-    public String estudianteDetails(@PathVariable(name = "id") int id, Model model){
+    public String estudianteDetails(@PathVariable(name = "id") int idEmpleado, Model model){
 
-        Estudiante estudiante = estudianteService.findById(id);
+        Estudiante estudiante = estudianteService.findById(idEmpleado);
         List<Telefono> telefonos = telefonoService.findByEstudiante(estudiante); 
 
         List<String> numTelefonos = telefonos.stream()
