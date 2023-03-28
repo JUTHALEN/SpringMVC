@@ -62,10 +62,10 @@
   
   <body>
     <h1 th:if="${estudiante != null}" th:text="'Detalles del estudiante ' + ${estudiante.nombre} + ' ' + 
-    ${estudiante.primerApellido}"></h1>
+        ${estudiante.primerApellido}"></h1>
 
     <div class="card" style="width: 18rem;">
-        <img th:src="@{/images/} + ${estudiante.foto}" class="card-img-top" alt="Imagen estudiante">
+        <img th:src="@{'/recursos/images/'} + ${estudiante.foto}" class="card-img-top" alt="Imagen estudiante">
     </div>    
     
     <div th:if="${telefonos != null}" class="container">

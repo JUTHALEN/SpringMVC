@@ -95,11 +95,15 @@ public class MainController {
             try {
             
             //Ruta relativa de donde voy a almacenar el archivo de imagen            
-            Path rutaRelativa = Paths.get("src/main/resources/static/images");     
+            //Path rutaRelativa = Paths.get("src/main/resources/static/images");     
                         
             //Necesitamos la ruta absoluta            
-            String rutaAbsoluta = rutaRelativa.toFile().getAbsolutePath();       
+            //String rutaAbsoluta = rutaRelativa.toFile().getAbsolutePath();       
             
+            //comentamos lo anterior para ver como sería para guardar las imagenes fuera del servidor, en una carpeta en home:
+            //Es doble barra porq es sistema de archivo
+            String rutaAbsoluta = "/home/jalendem/recursos/images";
+
             //Hemos recibido un array de Bytes            
             byte[] imagenEnBytes = imagen.getBytes();
 
